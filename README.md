@@ -36,6 +36,13 @@ IMHO a simpler way to get information about the current Maven Configuration is t
 Sometimes after a new release we experienced that the documentation isn't up to date even when the latest release was announced or already available in the maven repository. That shouldn't be the case and please [create a support case](https://access.redhat.com/support/) in this case. 
 But for me the single Source of Truth is [The Red Hat Maven Repository](https://maven.repository.redhat.com/ga/com/redhat/quarkus/platform/quarkus-bom/maven-metadata.xml).
 
+And for pipeline integrations you can simply use 
+```bash
+curl -s https://maven.repository.redhat.com/ga/com/redhat/quarkus/platform/quarkus-bom/maven-metadata.xml | \
+xmllint --xpath "string(/metadata/versioning/latest)" -
+```
+to simply find the latest RHBQ release version (incl. Red Hat Build number).
+
 ## Using RHBQ BOM with Quarkiverse Extensions
 
 Q: Is it possible to use red hat build of quarkus (with the maven bom configuration) and also use quarkiverse extensions? how does the maven pom.xml does look like in these cases?
